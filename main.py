@@ -32,12 +32,14 @@ def main() -> None:
         else:
             guild = None
 
-        Player.objects.create(
+        Player.objects.get_or_create(
             nickname=name,
-            email=player["email"],
-            bio=player["bio"],
-            race=race,
-            guild=guild
+            defaults={
+                "email": player["email"],
+                "bio": player["bio"],
+                "race": race,
+                "guild": guild
+            }
         )
 
 
